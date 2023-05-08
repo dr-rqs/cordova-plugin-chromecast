@@ -1,5 +1,5 @@
 {
-  "name": "cordova-plugin-chromecast",
+  "name": "@dr-rqs/cordova-plugin-chromecast",
   "version": "2.0.1",
   "scripts": {
     "host-chrome-tests": "node tests/www/chrome/host-tests.js",
