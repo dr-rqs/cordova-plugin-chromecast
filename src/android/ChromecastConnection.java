@@ -366,7 +366,7 @@ public class ChromecastConnection {
                             callback.onCancel();
                         }
                     });
-                    builder.setPositiveButton("Arrêtre la diffusion", new DialogInterface.OnClickListener() {
+                    builder.setPositiveButton("Arrêter la diffusion", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             endSession(true, null);
