@@ -117,7 +117,7 @@ int scansRunning = 0;
     if (scansRunning > 0) {
         // Terminate all scans
         scansRunning = 0;
-        [self sendError:@"cancel" message:@"Scan stopped because setup triggered." command:scanCommand];
+        [self sendError:@"cancel" message:@"Scan interrompu." command:scanCommand];
         scanCommand = nil;
         [self stopRouteScan];
     }
@@ -126,7 +126,7 @@ int scansRunning = 0;
 - (BOOL)stopRouteScan:(CDVInvokedUrlCommand*)command {
     if (scanCommand != nil) {
         [self stopRouteScan];
-        [self sendError:@"cancel" message:@"Scan stopped." command:scanCommand];
+        [self sendError:@"cancel" message:@"Scan interrompu." command:scanCommand];
         scanCommand = nil;
     }
     if (command != nil) {
@@ -145,7 +145,7 @@ int scansRunning = 0;
 
 -(BOOL) startRouteScan:(CDVInvokedUrlCommand*)command {
     if (scanCommand != nil) {
-        [self sendError:@"cancel" message:@"Started a new route scan before stopping previous one." command:scanCommand];
+        [self sendError:@"cancel" message:@"Nouveau scan lancé." command:scanCommand];
     } else {
         // Only start the scan if the user has not already started one
         [self startRouteScan];
@@ -171,7 +171,7 @@ int scansRunning = 0;
 }
 
 - (void)requestSession:(CDVInvokedUrlCommand*) command {
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Cast to" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Caster sur" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     GCKDiscoveryManager* discoveryManager = GCKCastContext.sharedInstance.discoveryManager;
     for (int i = 0; i < [discoveryManager deviceCount]; i++) {
         GCKDevice* device = [discoveryManager deviceAtIndex:i];
@@ -179,12 +179,12 @@ int scansRunning = 0;
             [self.currentSession joinDevice:device cdvCommand:command];
         }]];
     }
-    [alert addAction:[UIAlertAction actionWithTitle:@"Stop Casting" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    [alert addAction:[UIAlertAction actionWithTitle:@"Arrêter la diffusion" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self.currentSession endSessionWithCallback:^{
             [self sendError:@"cancel" message:@"" command:command];
         } killSession:YES];
     }]];
-    [alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    [alert addAction:[UIAlertAction actionWithTitle:@"Annuler" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         [self.currentSession.remoteMediaClient stop];
         [self sendError:@"cancel" message:@"" command:command];
     }]];
@@ -315,7 +315,7 @@ int scansRunning = 0;
     GCKCastSession* currentSession = [GCKCastContext sharedInstance].sessionManager.currentCastSession;
     if (currentSession != nil &&
         (currentSession.connectionState == GCKConnectionStateConnected || currentSession.connectionState == GCKConnectionStateConnecting)) {
-        [self sendError:@"session_error" message:@"Leave or stop current session before attempting to join new session." command:command];
+        [self sendError:@"session_error" message:@"Quittez ou arrêtez la diffusion actuelle pour démarrer une nouvelle diffusion" command:command];
         return;
     }
     
