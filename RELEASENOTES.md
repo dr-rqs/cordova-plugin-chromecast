@@ -21,6 +21,10 @@
 
 ## Release Notes for cordova-plugin-chromecast
 
+
+### 2.1.1 (2023-09-28)
+
+* add french translations
 ### 2.1.0 (2023-05-08)
 
 * (android) Update Google Cast SDK (android -> 21.3.0)

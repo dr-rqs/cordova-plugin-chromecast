@@ -75,7 +75,7 @@ public final class Chromecast extends CordovaPlugin {
             });
             this.media = connection.getChromecastSession();
         } catch (RuntimeException e) {
-            noChromecastError = "Could not initialize chromecast: " + e.getMessage();
+            noChromecastError = "Impossible d'initialiser chromecast : " + e.getMessage();
             e.printStackTrace();
         }
     }
@@ -159,7 +159,7 @@ public final class Chromecast extends CordovaPlugin {
             @Override
             public void run() {
                 if (scanCallback != null) {
-                    scanCallback.error(ChromecastUtilities.createError("cancel", "Scan stopped because setup triggered."));
+                    scanCallback.error(ChromecastUtilities.createError("cancel", "Scan interrompu."));
                     scanCallback = null;
                 }
                 sendEvent("SETUP", new JSONArray());
@@ -462,7 +462,7 @@ public final class Chromecast extends CordovaPlugin {
      */
     public boolean startRouteScan(CallbackContext callbackContext) {
         if (scanCallback != null) {
-            scanCallback.error(ChromecastUtilities.createError("cancel", "Started a new route scan before stopping previous one."));
+            scanCallback.error(ChromecastUtilities.createError("cancel", "Nouveau scan lancé."));
         }
         scanCallback = callbackContext;
         Runnable startScan = new Runnable() {
@@ -505,7 +505,7 @@ public final class Chromecast extends CordovaPlugin {
             @Override
             public void run() {
                 if (scanCallback != null) {
-                    scanCallback.error(ChromecastUtilities.createError("cancel", "Scan stopped."));
+                    scanCallback.error(ChromecastUtilities.createError("cancel", "Scan interromp."));
                     scanCallback = null;
                 }
                 callbackContext.success();

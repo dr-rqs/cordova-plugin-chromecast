@@ -200,7 +200,7 @@ public class ChromecastConnection {
             public void run() {
                 if (getSession() != null && getSession().isConnected()) {
                     callback.onError(ChromecastUtilities.createError("session_error",
-                            "Leave or stop current session before attempting to join new session."));
+                            "Quittez ou arrêtez la diffusion actuelle pour démarrer une nouvelle diffusion."));
                     return;
                 }
 
@@ -281,7 +281,7 @@ public class ChromecastConnection {
                             return false;
                         } else {
                             sendErrorResult.apply(ChromecastUtilities.createError("session_error",
-                                    "Failed to start session with error code: " + errorCode));
+                                    "Impossible de démarrer la diffusion: " + errorCode));
                             return true;
                         }
                     }
@@ -366,7 +366,7 @@ public class ChromecastConnection {
                             callback.onCancel();
                         }
                     });
-                    builder.setPositiveButton("Stop Casting", new DialogInterface.OnClickListener() {
+                    builder.setPositiveButton("Arrêter la diffusion", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             endSession(true, null);
